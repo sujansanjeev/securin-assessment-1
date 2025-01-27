@@ -31,7 +31,7 @@ Before you begin, ensure that you have the following installed:
 1. Clone the repository:
 
    ```bash
-   [git clone https://github.com/sujansanjeev/securin-assessment-1.git]
+   git clone https://github.com/sujansanjeev/securin-assessment-1.git
    cd securin-assessment-1
    ```
 
