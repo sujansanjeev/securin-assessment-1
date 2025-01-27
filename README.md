@@ -45,7 +45,7 @@ Before you begin, ensure that you have the following installed:
 3. Install the required dependencies:
 
    ```bash
-   pip install -r flask tinydb flask_cors flask_sqlalchemy
+   pip install flask tinydb flask_cors flask_sqlalchemy
    ```
 
 4. Start the Flask backend server:
