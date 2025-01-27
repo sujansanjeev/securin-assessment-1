@@ -1,8 +1,9 @@
-#root{
+#root {
   background-color: white;
-  width:100%;
-  height:100%
+  width: 100%;
+  height: 100%;
 }
+
 .container {
   padding: 24px;
   max-width: 1200px;
@@ -13,7 +14,7 @@
   justify-content: center;
 }
 
-/* Header styles */
+
 .header {
   font-size: 24px;
   font-weight: bold;
@@ -21,12 +22,17 @@
   margin-bottom: 24px;
 }
 
-/* Table styles */
+
+.tableContainer {
+  max-height: 400px; 
+  overflow-y: auto;  
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
-  background-color: #fff;
   color: black;
 }
 
@@ -36,7 +42,6 @@
   background-color: #f0f0f0;
   border-bottom: 1px solid #ddd;
   font-weight: 500;
-  color: black;
 }
 
 .td {
@@ -44,10 +49,6 @@
   text-align: left;
   border-bottom: 1px solid #ddd;
   color: black;
-}
-
-.tr {
-  cursor: pointer;
 }
 
 .trHover {
