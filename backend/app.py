@@ -220,3 +220,6 @@ def get_cve_details(cve_id):
 if __name__ == '__main__':
     threading.Thread(target=update_database, daemon=True).start()
     app.run(debug=True)
+
+
+

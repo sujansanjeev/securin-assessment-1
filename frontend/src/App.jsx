@@ -2,24 +2,101 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 
+const FilterSection = ({ filters, setFilters }) => {
+  const years = Array.from({ length: 25 }, (_, i) => (new Date().getFullYear() - i).toString());
+  const scores = Array.from({ length: 11 }, (_, i) => i.toFixed(1));
+  const modifiedDays = [7, 30, 90, 180, 365];
+
+  return (
+    <div className="filterContainer" style={{ marginBottom: '20px', display: 'flex', gap: '20px', alignItems: 'center' }}>
+      <div>
+        <label>Year: </label>
+        <select
+          value={filters.year || ''}
+          onChange={(e) => setFilters(prev => ({ ...prev, year: e.target.value }))}
+          className="select"
+        >
+          <option value="">All Years</option>
+          {years.map(year => (
+            <option key={year} value={year}>{year}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label>CVSS Score: </label>
+        <select
+          value={filters.score || ''}
+          onChange={(e) => setFilters(prev => ({ ...prev, score: e.target.value }))}
+          className="select"
+        >
+          <option value="">All Scores</option>
+          {scores.map(score => (
+            <option key={score} value={score}>{score}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label>Modified Within: </label>
+        <select
+          value={filters.modifiedDays || ''}
+          onChange={(e) => setFilters(prev => ({ ...prev, modifiedDays: e.target.value }))}
+          className="select"
+        >
+          <option value="">Any Time</option>
+          {modifiedDays.map(days => (
+            <option key={days} value={days}>{days} days</option>
+          ))}
+        </select>
+      </div>
+
+      <button
+        onClick={() => setFilters({})}
+        className="clearButton"
+        style={{
+          padding: '5px 10px',
+          backgroundColor: 'blue',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}
+      >
+        Clear Filters
+      </button>
+    </div>
+  );
+};
+
 const CVEList = () => {
   const [cves, setCves] = useState([]);
   const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(10);
   const [hoveredRow, setHoveredRow] = useState(null);
-  const [sortBy, setSortBy] = useState('published_date'); 
-  const [sortOrder, setSortOrder] = useState('asc'); 
+  const [sortBy, setSortBy] = useState('published_date');
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [filters, setFilters] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchCVEs();
-  }, [currentPage, resultsPerPage, sortBy, sortOrder]); 
+  }, [currentPage, resultsPerPage, sortBy, sortOrder, filters]);
 
   const fetchCVEs = async () => {
     try {
+      const queryParams = new URLSearchParams({
+        page: currentPage,
+        per_page: resultsPerPage,
+        sort_by: sortBy,
+        sort_order: sortOrder,
+        ...(filters.year && { year: filters.year }),
+        ...(filters.score && { score: filters.score }),
+        ...(filters.modifiedDays && { modified_days: filters.modifiedDays })
+      });
+
       const response = await fetch(
-        `http://localhost:5000/api/cves?page=${currentPage}&per_page=${resultsPerPage}&sort_by=${sortBy}&sort_order=${sortOrder}`
+        `http://localhost:5000/api/cves?${queryParams.toString()}`
       );
       const data = await response.json();
       setCves(data.results);
@@ -32,6 +109,8 @@ const CVEList = () => {
   return (
     <div className="container">
       <h1 className="header">CVE LIST</h1>
+
+      <FilterSection filters={filters} setFilters={setFilters} />
 
       <div style={{ marginBottom: '20px' }}>
         <span style={{ fontWeight: '500' }}>Total Records: {totalRecords}</span>
