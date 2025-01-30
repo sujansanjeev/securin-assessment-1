@@ -144,7 +144,8 @@ If you'd like to contribute to this project:
 
 ![thumbnail_image](https://github.com/user-attachments/assets/dd2c41c1-6ff9-46e7-b778-e75527383205)
 
-<img width="1470" alt="list output" src="https://github.com/user-attachments/assets/18d58745-7931-451a-8367-261ff3b6d3f5" />
+![image](https://github.com/user-attachments/assets/eadba050-06dd-4f7d-a4c0-eb40c17573c8)
+
 
 
 ## License
