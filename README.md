@@ -3,7 +3,7 @@
 
 A full-stack web application that allows users to view and interact with CVE (Common Vulnerabilities and Exposures) data. This project includes both a frontend built with React and a backend built with Flask, using TinyDB to store and serve CVE data.
 
-#since the dataset is big it may take 1-2 minutes for the backend to parse and update it into database
+since the dataset is big it may take 1-2 minutes for the backend to parse and update it into database
 ---
 
 ## Features
