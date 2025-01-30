@@ -142,7 +142,8 @@ If you'd like to contribute to this project:
 ---
 ##output
 
-<img width="1470" alt="details output" src="https://github.com/user-attachments/assets/ecd1d318-0171-49a6-8244-3658705ea1a1" />
+![thumbnail_image](https://github.com/user-attachments/assets/dd2c41c1-6ff9-46e7-b778-e75527383205)
+
 <img width="1470" alt="list output" src="https://github.com/user-attachments/assets/18d58745-7931-451a-8367-261ff3b6d3f5" />
 
 
